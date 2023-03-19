@@ -25,7 +25,7 @@ const singleUser = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    console.log(req.body);
+    console.log(req);
 
     const newUser = await User.create({
       ...req.body,

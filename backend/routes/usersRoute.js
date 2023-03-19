@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { loginUser } = require("../controllers/authController");
 const {
   allUsers,
   singleUser,
@@ -8,6 +9,8 @@ const {
 
 router.get("/", allUsers).get("/:id", singleUser);
 
-router.post("/new", express.json(), createUser);
+router
+  .post("/new", express.json(), createUser)
+  .post("/auth/login", express.json(), loginUser);
 
 module.exports = router;
