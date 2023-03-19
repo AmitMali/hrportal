@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = new mongoose.Schema();
-
+const Schema = mongoose.Schema;
 const validator = require("validator");
 
 //TODO:validate and sanitize data , validator library installed need to implement on model
@@ -48,7 +47,7 @@ const userSchema = new Schema(
       default: "employee",
     },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("User", userSchema);
