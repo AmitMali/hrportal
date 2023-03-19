@@ -1,7 +1,19 @@
+import { Card, theme, Col, Row } from "antd";
+import RegisterForm from "../../Components/RegisterForm";
 import React from "react";
-
 const Register = () => {
-  return <div>Register</div>;
+  return (
+    <Row justify="center">
+      <Col span={16}>
+        <Card
+          title="Register"
+          className="RegisterFormCenter"
+          style={{ marginTop: 30 }}
+        >
+          <RegisterForm />
+        </Card>
+      </Col>
+    </Row>
+  );
 };
-
 export default Register;

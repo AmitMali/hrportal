@@ -1,44 +1,26 @@
-import {
-  Card,
-  Form,
-  Layout,
-  Menu,
-  Space,
-  theme,
-  Col,
-  Row,
-  Typography,
-} from "antd";
+import { Card, Typography, Row, Col } from "antd";
+const { Link, Text } = Typography;
 import LoginForm from "../../Components/LoginForm";
-const { Header, Content, Footer } = Layout;
 const Login = () => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
   return (
-    <Layout className="layout">
-      <Header>
-        <Typography>HR Portal</Typography>
-      </Header>
-      <Content
-        style={{
-          padding: "0 50px",
-          height: "90vh",
-        }}
-      >
-        <Row justify="center">
-          <Col span={16}>
-            <Card
-              title="Login"
-              className="loginFormCenter"
-              style={{ marginTop: 30 }}
-            >
-              <LoginForm />
-            </Card>
-          </Col>
-        </Row>
-      </Content>
-    </Layout>
+    <Row justify="center">
+      <Col span={16}>
+        <Card
+          title="Login"
+          className="loginFormCenter"
+          style={{ marginTop: 30 }}
+        >
+          <LoginForm />
+          <Text className=" text-right block">
+            Dont have account ?
+            <Link href="/users/new" className="mx-1">
+              Register
+            </Link>
+            here
+          </Text>
+        </Card>
+      </Col>
+    </Row>
   );
 };
 export default Login;

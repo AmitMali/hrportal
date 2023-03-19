@@ -69,10 +69,11 @@ const Dashboard = () => {
             textAlign: "center",
           }}
         >
-          Ant Design ©2023 Created by Ant UED
+          Developed with love
         </Footer>
       </Layout>
     </Layout>
   );
 };
+
 export default Dashboard;
