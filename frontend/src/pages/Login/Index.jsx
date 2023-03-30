@@ -1,6 +1,6 @@
 import { Card, Typography, Row, Col } from "antd";
 const { Link, Text } = Typography;
-import LoginForm from "../../Components/LoginForm";
+import LoginForm from "../../Components/forms/LoginForm";
 const Login = () => {
   return (
     <Row justify="center">

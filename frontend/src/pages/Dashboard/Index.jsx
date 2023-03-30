@@ -1,78 +1,36 @@
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { Layout, Menu, theme } from "antd";
+import { Layout, theme, Col, Row, Card } from "antd";
 import React from "react";
+import PunchInOut from "../../Components/ui/PunchInOut";
+import UserProfileCard from "../../Components/ui/UserProfileCard";
 import "./index.css";
+
 const { Header, Content, Footer, Sider } = Layout;
 const Dashboard = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
-    <Layout style={{ height: "100vh" }}>
-      <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
-      >
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["4"]}
-          items={[
-            UserOutlined,
-            VideoCameraOutlined,
-            UploadOutlined,
-            UserOutlined,
-          ].map((icon, index) => ({
-            key: String(index + 1),
-            icon: React.createElement(icon),
-            label: `nav ${index + 1}`,
-          }))}
-        />
-      </Sider>
-      <Layout>
-        <Header
-          style={{
-            padding: "16 0px",
-            background: colorBgContainer,
-          }}
-        >
-          Header
-        </Header>
-        <Content
-          style={{
-            margin: "24px 16px 0",
-          }}
-        >
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-            }}
-          >
-            content
+    <>
+      <Row gutter={16}>
+        <Col className="gutter-row" span={8}>
+          <div>
+            <Card>
+              <PunchInOut
+                size={100}
+                iconSize={40}
+                userId={"64173e59734e02c684afb018"}
+                titleLevel={5}
+              />
+            </Card>
           </div>
-        </Content>
-        <Footer
-          style={{
-            textAlign: "center",
-          }}
-        >
-          Developed with love
-        </Footer>
-      </Layout>
-    </Layout>
+        </Col>
+        <Col className="gutter-row" span={8}>
+          <div>
+            <UserProfileCard />
+          </div>
+        </Col>
+      </Row>
+    </>
   );
 };
 
