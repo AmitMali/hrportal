@@ -8,8 +8,10 @@ const punchIn = async (req, res) => {
   try {
     const punchIn = await TimeSheet.create({
       ...req.body,
+      user: req.id,
       status: "in",
     });
+
     return res.status(201).json({ status: "success", punchIn });
   } catch (err) {
     return res.status(400).json({ error: err });
@@ -18,7 +20,7 @@ const punchIn = async (req, res) => {
 const punchOut = async (req, res) => {
   try {
     const punchOut = await TimeSheet.findOneAndUpdate(
-      { user: req.body.user, status: "in" },
+      { user: req.id, status: "in" },
       {
         ...req.body,
         status: "out",
@@ -35,11 +37,11 @@ const punchOut = async (req, res) => {
 
 const getUserTimeSheet = async (req, res) => {
   try {
-    console.log(req.params);
     const userAttendance = await TimeSheet.find({
-      user: req.params.id,
+      user: req.id,
       status: "in",
     }).exec();
+
     return res.status(200).json(userAttendance);
   } catch (error) {
     return res.status(404).json({ erros: error.message });

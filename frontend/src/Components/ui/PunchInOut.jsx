@@ -3,6 +3,7 @@ import axios from "axios";
 import moment from "moment";
 import { LoginOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Button, Typography, Tooltip, Row, Col } from "antd";
+import authHeader from "../../auth/authHeader";
 const { Title } = Typography;
 const PunchInOut = (props) => {
   const btnStyle = {
@@ -13,8 +14,7 @@ const PunchInOut = (props) => {
   const [status, setStatus] = useState("out");
   const isUserIn = async () => {
     try {
-      const result = await axios.get(`users/timesheet/${props.userId}`);
-      console.log(result.data.length);
+      const result = await axios.get(`users/timesheet`, authHeader());
       if (result.data.length !== 0) {
         setStatus("in");
       }
@@ -22,23 +22,33 @@ const PunchInOut = (props) => {
       console.log(error);
     }
   };
+
+  //punch in
   const punchIn = async () => {
     try {
-      const result = await axios.post("users/timesheet/punchin", {
-        user: props.userId,
-        inTime: moment().toLocaleString(),
-      });
+      const result = await axios.post(
+        "users/timesheet/punchin",
+        {
+          inTime: moment().toLocaleString(),
+        },
+        authHeader()
+      );
       setStatus("in");
     } catch (error) {
       console.log(error);
     }
     console.log("punchin", status);
   };
+
+  //punch out
   const punchOut = async () => {
-    const result = await axios.patch("users/timesheet/punchout", {
-      user: props.userId,
-      outTime: moment().toLocaleString(),
-    });
+    const result = await axios.patch(
+      "users/timesheet/punchout",
+      {
+        outTime: moment().toLocaleString(),
+      },
+      authHeader()
+    );
     setStatus("out");
     console.log("punchoute", status);
   };
