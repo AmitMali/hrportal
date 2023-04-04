@@ -2,6 +2,7 @@ import { Button, Checkbox, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import axios from "axios";
+import { encrypt } from "../helpers/encryptDecrypt";
 const cookie = new Cookies();
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ const LoginForm = () => {
       const response = await axios.post("/users/auth/login", values);
 
       if (response && response.status == 200) {
+        const role = encrypt(response.data.role);
+        localStorage.setItem("role", role);
         cookie.set("token", response.data.token, { path: "/" });
         navigate("/dashboard");
       }

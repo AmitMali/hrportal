@@ -3,9 +3,11 @@ import axios from "axios";
 import { useState } from "react";
 const RegisterForm = () => {
   const [status, setStatus] = useState({});
+
   const onFinish = async (values) => {
     try {
       const response = await axios.post("/users/new", values);
+
       if (response && response.status == 201) {
         setStatus({
           code: response.status,
@@ -144,6 +146,18 @@ const RegisterForm = () => {
           ]}
         >
           <Input.Password />
+        </Form.Item>
+        <Form.Item name="role" label="Select Role" rules={[{ required: true }]}>
+          <Select
+            placeholder="Select user role default is set to employee"
+            allowClear
+            defaultValue="employee"
+          >
+            <Option value="employee">Employee</Option>
+            <Option value="hr">HR</Option>
+            <Option value="manager">Manager</Option>
+            <Option value="admin">Admin</Option>
+          </Select>
         </Form.Item>
         <Form.Item
           wrapperCol={{

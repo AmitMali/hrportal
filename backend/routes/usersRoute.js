@@ -11,20 +11,23 @@ const {
   allUsers,
   singleUser,
   createUser,
+  userProfile,
 } = require("../controllers/userController");
 
 //general routes
-router.post("/auth/login", express.json(), loginUser);
+router
+  .post("/auth/login", express.json(), loginUser)
+  .post("/new", express.json(), createUser);
 router
   .use(isLoggedIn)
   .get("/", allUsers)
   .get("/timesheet", getUserTimeSheet)
+  .get("/profile", userProfile)
   .get("/:id", singleUser);
 
 //post route protected
 router
   .use(isLoggedIn)
-  .post("/new", express.json(), createUser)
   .post("/timesheet/punchin", express.json(), punchIn)
   .patch("/timesheet/punchout", express.json(), punchOut);
 

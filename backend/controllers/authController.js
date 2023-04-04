@@ -8,7 +8,6 @@ const loginUser = async (req, resp) => {
   const userEmail = req.body.userMail;
   const userPassword = req.body.userPassword;
   let userExist = await User.findOne({ email: userEmail });
-  console.log(req.body);
   if (!userExist) {
     return resp
       .status(400)
@@ -25,10 +24,16 @@ const loginUser = async (req, resp) => {
           message: "invalid creedentials",
         });
       }
-      const token = jwt.sign({ id: userExist._id }, JWT_SECRET_KEY);
-      return resp
-        .status(200)
-        .json({ status: "success", message: "login successfull", token });
+      const token = jwt.sign(
+        { id: userExist._id, role: userExist.role },
+        JWT_SECRET_KEY
+      );
+      return resp.status(200).json({
+        status: "success",
+        message: "login successfull",
+        token,
+        role: userExist.role,
+      });
     }
   );
 };

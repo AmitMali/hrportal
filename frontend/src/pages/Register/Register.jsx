@@ -1,5 +1,5 @@
 import { Card, theme, Col, Row } from "antd";
-import RegisterForm from "../../Components/forms/RegisterForm";
+import RegisterForm from "../../forms/RegisterForm";
 import React from "react";
 const Register = () => {
   return (

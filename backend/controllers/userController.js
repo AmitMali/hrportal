@@ -22,8 +22,18 @@ const singleUser = async (req, res) => {
     res.status(404).json({ error: err.message });
   }
 };
+const userProfile = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = await User.findById(id).lean();
+    res.status(200).json({ user });
+  } catch (err) {
+    res.status(404).json({ error: err.message });
+  }
+};
 
 const createUser = async (req, res) => {
+  console.log(req.body);
   try {
     const newUser = await User.create({
       ...req.body,
@@ -36,4 +46,4 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { allUsers, singleUser, createUser };
+module.exports = { allUsers, singleUser, createUser, userProfile };

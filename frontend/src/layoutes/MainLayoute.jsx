@@ -1,6 +1,7 @@
 import { Layout, Menu, theme } from "antd";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
+import { isLoggedIn } from "../auth/authFunctions";
 const { Header, Content, Footer } = Layout;
 const menuitems = [
   {
@@ -12,12 +13,16 @@ const menuitems = [
     key: "home",
   },
   {
-    label: (
+    label: isLoggedIn() ? (
+      <a href="/logout" rel="noopener noreferrer">
+        Logout
+      </a>
+    ) : (
       <a href="/login" rel="noopener noreferrer">
         Login
       </a>
     ),
-    key: "login",
+    key: "loginout",
   },
   {
     label: (
@@ -28,6 +33,7 @@ const menuitems = [
     key: "register",
   },
 ];
+
 const MainLayoute = () => {
   const [current, setCurrent] = useState("mail");
   const onClick = (e) => {
