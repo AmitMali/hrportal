@@ -12,10 +12,14 @@ const LoginForm = () => {
       const response = await axios.post("/users/auth/login", values);
 
       if (response && response.status == 200) {
+        console.log(response);
         const role = encrypt(response.data.role);
+        const userid = encrypt(response.data.id);
         localStorage.setItem("role", role);
+        localStorage.setItem("user", userid);
+        localStorage.setItem("token", response.data.token);
+
         cookie.set("token", response.data.token, { path: "/" });
-        navigate("/dashboard");
       }
     } catch (err) {
       console.log(err.message);

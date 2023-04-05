@@ -29,6 +29,7 @@ const loginUser = async (req, resp) => {
         JWT_SECRET_KEY
       );
       return resp.status(200).json({
+        id: userExist._id,
         status: "success",
         message: "login successfull",
         token,

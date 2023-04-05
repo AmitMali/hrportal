@@ -7,7 +7,7 @@ import { Avatar, Card, Typography } from "antd";
 const { Meta } = Card;
 const { Title } = Typography;
 const UserProfileCard = (props) => {
-  console.log(props);
+  // console.log(props);
   const { user } = props;
 
   return (

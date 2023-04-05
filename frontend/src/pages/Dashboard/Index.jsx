@@ -1,26 +1,22 @@
-import { Layout, theme } from "antd";
 import React from "react";
 import EmployeeDashboard from "./EmployeeDashboard/EmployeeDashboard";
 import "./index.css";
 import { loggedInUser } from "../../auth/authFunctions";
-import HrDashboard from "./EmployeeDashboard/HrDashboard";
-import AdminDashboard from "./EmployeeDashboard/AdminDashboard";
-import ManagerDashboard from "./EmployeeDashboard/ManagerDashboard";
+import HrDashboard from "./HrDashboard/HrDashboard";
+import AdminDashboard from "./AdminDashboard/AdminDashboard";
+import ManagerDashboard from "./ManagerDashBoard/ManagerDashboard";
 
-const { Header, Content, Footer, Sider } = Layout;
 const Dashboard = () => {
   const user = loggedInUser();
-  // console.log(user);
-  const userDashboard = "";
-  const role = "employee";
-  if (role == "employee") {
+  const role = user.role;
+  if (role === "employee") {
     return <EmployeeDashboard user={user} />;
-  } else if (role == "hr") {
+  } else if (role === "hr") {
     return <HrDashboard user={user} />;
-  } else if (role == "admin") {
-    <AdminDashboard user={user} />;
-  } else if (role == "manager") {
-    <ManagerDashboard user={user} />;
+  } else if (role === "admin") {
+    return <AdminDashboard user={user} />;
+  } else if (role === "manager") {
+    return <ManagerDashboard user={user} />;
   }
 };
 

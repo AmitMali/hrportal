@@ -30,6 +30,8 @@ const EmployeeDashboard = (props) => {
       <Row gutter={16}>
         <Col>
           <Text>
+            {" "}
+            employee dash
             {user && `Hello  ${user.first_name}  you logged in as ${user.role}`}
           </Text>
         </Col>

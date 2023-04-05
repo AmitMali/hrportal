@@ -3,11 +3,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PunchInOut from "../../../Components/ui/PunchInOut";
 import UserProfileCard from "../../../Components/ui/UserProfileCard";
-import "./index.css";
+// import "./index.css";
 import authHeader from "../../../auth/authHeader";
 import { Typography } from "antd";
 
-const ManagerDashboard = (props) => {
+const HrDashboard = (props) => {
   const { Title, Text } = Typography;
 
   const userid = props.user.id;
@@ -30,6 +30,7 @@ const ManagerDashboard = (props) => {
       <Row gutter={16}>
         <Col>
           <Text>
+            hr dashboard
             {user && `Hello  ${user.first_name}  you logged in as ${user.role}`}
           </Text>
         </Col>
@@ -38,15 +39,13 @@ const ManagerDashboard = (props) => {
         <Col className="gutter-row" span={8}>
           <div>
             <Card>
-              {user ? (
+              {user && (
                 <PunchInOut
                   size={100}
                   iconSize={40}
                   userId={user._id}
                   titleLevel={5}
                 />
-              ) : (
-                "loading..."
               )}
             </Card>
           </div>
@@ -59,4 +58,4 @@ const ManagerDashboard = (props) => {
   );
 };
 
-export default ManagerDashboard;
+export default HrDashboard;

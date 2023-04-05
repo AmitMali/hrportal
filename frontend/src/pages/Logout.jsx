@@ -5,6 +5,8 @@ const Logout = () => {
   const navigate = useNavigate();
   cookies.remove("token");
   localStorage.removeItem("role");
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
 
   return <Navigate to="/" />;
 };

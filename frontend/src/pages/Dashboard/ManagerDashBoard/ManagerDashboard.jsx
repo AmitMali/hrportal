@@ -3,11 +3,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PunchInOut from "../../../Components/ui/PunchInOut";
 import UserProfileCard from "../../../Components/ui/UserProfileCard";
-import "./index.css";
+// import "./index.css";
 import authHeader from "../../../auth/authHeader";
 import { Typography } from "antd";
 
-const AdminDashboard = (props) => {
+const ManagerDashboard = (props) => {
   const { Title, Text } = Typography;
 
   const userid = props.user.id;
@@ -30,6 +30,7 @@ const AdminDashboard = (props) => {
       <Row gutter={16}>
         <Col>
           <Text>
+            manager dash
             {user && `Hello  ${user.first_name}  you logged in as ${user.role}`}
           </Text>
         </Col>
@@ -59,4 +60,4 @@ const AdminDashboard = (props) => {
   );
 };
 
-export default AdminDashboard;
+export default ManagerDashboard;

@@ -24,6 +24,7 @@ const menuitems = [
     ),
     key: "loginout",
   },
+
   {
     label: (
       <a href="/users/new" rel="noopener noreferrer">
@@ -32,6 +33,16 @@ const menuitems = [
     ),
     key: "register",
   },
+  {
+    label: isLoggedIn() ? (
+      <a href="/dashboard" rel="noopener noreferrer">
+        Dashboard
+      </a>
+    ) : (
+      <></>
+    ),
+    key: "dashboard",
+  },
 ];
 
 const MainLayoute = () => {
@@ -39,9 +50,7 @@ const MainLayoute = () => {
   const onClick = (e) => {
     setCurrent(e.key);
   };
-  //   const {
-  //     token: { colorBgContainer },
-  //   } = theme.useToken();
+
   return (
     <Layout>
       <Header className="flex justify-between items-center">

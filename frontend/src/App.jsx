@@ -13,11 +13,13 @@ import {
   ManagerRoutes,
 } from "./auth/ProtectedRoutes/ProtectedRoutes";
 import Logout from "./pages/Logout";
+import Home from "./pages/Home/Home";
 const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<MainLayoute />}>
+        <Route element={<MainLayoute />}>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route

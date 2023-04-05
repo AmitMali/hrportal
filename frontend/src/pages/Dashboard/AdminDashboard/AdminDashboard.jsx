@@ -3,11 +3,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PunchInOut from "../../../Components/ui/PunchInOut";
 import UserProfileCard from "../../../Components/ui/UserProfileCard";
-import "./index.css";
+// import "./index.css";
 import authHeader from "../../../auth/authHeader";
 import { Typography } from "antd";
+import { Header } from "antd/es/layout/layout";
 
-const HrDashboard = (props) => {
+const AdminDashboard = (props) => {
   const { Title, Text } = Typography;
 
   const userid = props.user.id;
@@ -27,9 +28,18 @@ const HrDashboard = (props) => {
 
   return (
     <>
+      <Header
+        style={{
+          padding: "16 0px",
+          background: colorBgContainer,
+        }}
+      >
+        Header
+      </Header>
       <Row gutter={16}>
         <Col>
           <Text>
+            admin
             {user && `Hello  ${user.first_name}  you logged in as ${user.role}`}
           </Text>
         </Col>
@@ -38,13 +48,15 @@ const HrDashboard = (props) => {
         <Col className="gutter-row" span={8}>
           <div>
             <Card>
-              {user && (
+              {user ? (
                 <PunchInOut
                   size={100}
                   iconSize={40}
                   userId={user._id}
                   titleLevel={5}
                 />
+              ) : (
+                "loading..."
               )}
             </Card>
           </div>
@@ -57,4 +69,4 @@ const HrDashboard = (props) => {
   );
 };
 
-export default HrDashboard;
+export default AdminDashboard;
